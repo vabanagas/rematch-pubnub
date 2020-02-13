@@ -23,6 +23,7 @@
   "module": "dist/rematch-pubnub.esm.js",
   "browser": "dist/rematch-pubnub.umd.js",
   "scripts": {
+    "prepare": "npm run build",
     "build": "rimraf build dist && tsc && NODE_ENV=production rollup -c"
   },
   "dependencies": {
