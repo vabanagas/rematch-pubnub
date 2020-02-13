@@ -19,9 +19,9 @@
     "dist",
     "index.d.ts"
   ],
-  "main": "dist/rematch-loading.cjs.js",
-  "module": "dist/rematch-loading.esm.js",
-  "browser": "dist/rematch-loading.umd.js",
+  "main": "dist/rematch-pubnub.cjs.js",
+  "module": "dist/rematch-pubnub.esm.js",
+  "browser": "dist/rematch-pubnub.umd.js",
   "scripts": {
     "build": "rimraf build dist && tsc && NODE_ENV=production rollup -c"
   },
