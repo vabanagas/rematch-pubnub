@@ -16,12 +16,12 @@
   "license": "MIT",
   "author": "Vincent Banagas <vabanagas@gmail.com>",
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "main": "dist/rematch-pubnub.cjs.js",
   "module": "dist/rematch-pubnub.esm.js",
   "browser": "dist/rematch-pubnub.umd.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "rimraf build dist && tsc && NODE_ENV=production rollup -c"
