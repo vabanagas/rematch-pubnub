@@ -1,4 +1,16 @@
-import { Plugin } from '@rematch/core';
-export declare const getPubnub: () => any;
-declare const pubnubPlugin: (pubnubConfig: any) => Plugin<import("@rematch/core").Models, import("@rematch/core").Action<any, any>>;
-export default pubnubPlugin;
+import { Plugin, Action } from '@rematch/core'
+import Pubnub, { PubnubConfig } from 'pubnub'
+import { NetworkStatusState } from 'pubnub-redux/dist/features/networkStatus/NetworkStatusReducer'
+import { pubnubReducer } from './src'
+
+export declare interface PubnubState {
+  pubnub: Readonly<ReturnType<typeof pubnubReducer>>
+}
+
+export declare const getPubnub: () => Pubnub
+
+declare const pubnubPlugin: (
+  pubnubConfig: PubnubConfig
+) => Plugin<Models, Action<any, any>>
+
+export default pubnubPlugin
