@@ -13,3 +13,5 @@ dist
 
 # release
 .release-it.json
+
+.env

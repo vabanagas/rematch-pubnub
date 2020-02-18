@@ -2,8 +2,9 @@ import { Models, RematchRootState, init } from '@rematch/core'
 import createPubnubPlugin, { PubnubState } from '@vincit/rematch-pubnub'
 
 const pubnubPlugin = createPubnubPlugin({
-  publishKey: 'pub-c-b8c8ab1e-2cd7-4db5-9a59-fdfdaebb2d29',
-  subscribeKey: 'sub-c-9fbab1fc-4d4a-11ea-814d-0ecb550e9de2',
+  publishKey: process.env.REACT_APP_PUBNUB_PUBLISH_KEY || '',
+  subscribeKey: process.env.REACT_APP_PUBNUB_SUBSCRIBE_KEY || '',
+  uuid: process.env.REACT_APP_PUBNUB_UUID || '',
 })
 
 const models: Models = {}

@@ -1,5 +1,8 @@
-import Pubnub, { PubnubConfig } from 'pubnub'
 import {
+  Message,
+  Presence,
+  Space,
+  User,
   createMembersReducer,
   createMembershipReducer,
   createMessageReducer,
@@ -8,23 +11,25 @@ import {
   createSpaceReducer,
   createUserReducer,
 } from 'pubnub-redux'
+import Pubnub, { PubnubConfig } from 'pubnub'
 
+import { Members } from 'pubnub-redux/dist/features/members/MembersActions'
+import { Membership } from 'pubnub-redux/dist/features/membership/MembershipActions'
 import { Plugin } from '@rematch/core'
 import { combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 
-let pubnub: Pubnub
 // pubnub is used for PubNubProvider
-export const getPubnub = () => pubnub
+let pubnub: Pubnub
 
-export const pubnubReducer = combineReducers({
+const pubnubReducer = combineReducers({
   networkStatus: createNetworkStatusReducer(false),
-  messages: createMessageReducer(),
-  presence: createPresenceReducer(),
-  users: createUserReducer(),
-  spaces: createSpaceReducer(),
-  memberships: createMembershipReducer(),
-  members: createMembersReducer(),
+  messages: createMessageReducer<Message>(),
+  presence: createPresenceReducer<Presence>(),
+  users: createUserReducer<User>(),
+  spaces: createSpaceReducer<Space>(),
+  memberships: createMembershipReducer<Membership>(),
+  members: createMembersReducer<Members>(),
 })
 
 export interface PubnubState {
@@ -32,7 +37,7 @@ export interface PubnubState {
 }
 
 // rematch plugin
-const pubnubPlugin = (pubnubConfig: PubnubConfig): Plugin => {
+const createPubnubPlugin = (pubnubConfig: PubnubConfig): Plugin => {
   pubnub = new Pubnub(pubnubConfig)
 
   return {
@@ -53,4 +58,6 @@ const pubnubPlugin = (pubnubConfig: PubnubConfig): Plugin => {
   }
 }
 
-export default pubnubPlugin
+export const getPubnub = () => pubnub
+
+export default createPubnubPlugin

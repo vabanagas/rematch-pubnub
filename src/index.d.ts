@@ -8,8 +8,8 @@ export declare interface PubnubState {
 
 export declare const getPubnub: () => Pubnub
 
-declare const pubnubPlugin: (
+declare const createPubnubPlugin: (
   pubnubConfig: PubnubConfig
 ) => Plugin<Models, Action<any, any>>
 
-export default pubnubPlugin
+export default createPubnubPlugin

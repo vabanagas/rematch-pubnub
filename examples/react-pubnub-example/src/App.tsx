@@ -1,10 +1,5 @@
 import React, { useEffect } from 'react'
-import {
-  createPubNubListener,
-  fetchMessageHistory,
-  fetchSpaces,
-  fetchUsers,
-} from 'pubnub-redux'
+import { createPubNubListener, fetchSpaces } from 'pubnub-redux'
 import store, { ExampleDispatch, ExampleRootState } from './store'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -25,12 +20,22 @@ const App = () => {
   const state = useSelector((state: ExampleRootState) => state)
   const formattedState = JSON.stringify(state, null, '\t')
 
+  const leaveApplication = () => {
+    // This is required to show the current user leave immediately rather than
+    // wating for the timeout period
+    pubnub.unsubscribeAll()
+  }
+
   useEffect(() => {
     pubnub.addListener(createPubNubListener(store.dispatch))
 
     dispatch(fetchSpaces())
 
-    return pubnub.unsubscribeAll()
+    return leaveApplication
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', leaveApplication)
   }, [])
 
   return (
