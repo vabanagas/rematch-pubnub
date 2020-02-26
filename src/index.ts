@@ -19,7 +19,7 @@ import { Plugin } from '@rematch/core'
 import { combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 
-let pubnubInstance: Pubnub
+let pubnubInstance: Pubnub | undefined
 
 let extraArgument = {
   get pubnub() {
@@ -45,7 +45,7 @@ export const getPubnubInstance = () => {
   return pubnubInstance
 }
 
-export const setPubnubInstance = (instance: Pubnub) => {
+export const setPubnubInstance = (instance?: Pubnub) => {
   pubnubInstance = instance
 }
 
