@@ -6,7 +6,9 @@ export declare interface PubnubState {
   pubnub: Readonly<ReturnType<typeof pubnubReducer>>
 }
 
-export declare const getPubnub: () => Pubnub
+export declare const getPubnubInstance: () => Pubnub
+
+export declare const setPubnubInstance: (instance: Pubnub) => void
 
 declare const createPubnubPlugin: (
   pubnubConfig: PubnubConfig

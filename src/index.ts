@@ -19,8 +19,13 @@ import { Plugin } from '@rematch/core'
 import { combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 
-// pubnub is used for PubNubProvider
-let pubnub: Pubnub
+let pubnubInstance: Pubnub
+
+let extraArgument = {
+  get pubnub() {
+    return { api: pubnubInstance }
+  },
+}
 
 const pubnubReducer = combineReducers({
   networkStatus: createNetworkStatusReducer(false),
@@ -36,9 +41,19 @@ export interface PubnubState {
   pubnub: Readonly<ReturnType<typeof pubnubReducer>>
 }
 
+export const getPubnubInstance = () => {
+  return pubnubInstance
+}
+
+export const setPubnubInstance = (instance: Pubnub) => {
+  pubnubInstance = instance
+}
+
 // rematch plugin
-const createPubnubPlugin = (pubnubConfig: PubnubConfig): Plugin => {
-  pubnub = new Pubnub(pubnubConfig)
+const createPubnubPlugin = (pubnubConfig?: PubnubConfig): Plugin => {
+  if (pubnubConfig) {
+    setPubnubInstance(new Pubnub(pubnubConfig))
+  }
 
   return {
     config: {
@@ -46,18 +61,10 @@ const createPubnubPlugin = (pubnubConfig: PubnubConfig): Plugin => {
         reducers: {
           pubnub: pubnubReducer,
         },
-        middlewares: [
-          thunk.withExtraArgument({
-            pubnub: {
-              api: pubnub,
-            },
-          }),
-        ],
+        middlewares: [thunk.withExtraArgument(extraArgument)],
       },
     },
   }
 }
-
-export const getPubnub = () => pubnub
 
 export default createPubnubPlugin

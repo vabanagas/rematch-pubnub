@@ -22,6 +22,7 @@ import createRematchPubnub from '@vincit/rematch-pubnub'
 const pubnubPlugin = createRematchPubnub({
   publishKey: 'publishKey',
   subscribeKey: 'subscribeKey',
+  uuid: 'uuid',
 })
 
 init({
@@ -34,10 +35,10 @@ init({
 The PubNubProvider makes available a PubNub client instance to a React component tree.
 
 ```javascript
-import { getPubnub } from '@vincit/rematch-pubnub'
+import { getPubnubInstance } from '@vincit/rematch-pubnub'
 import { PubNubProvider } from 'pubnub-react'
 
-const pubnub = getPubnub()
+const pubnub = getPubnubInstance()
 
 const Root = () => (
   <PubNubProvider client={pubnub}>
@@ -52,6 +53,43 @@ const Root = () => (
 import { PubnubState } from '@vincit/rematch-pubnub'
 
 export type iRootState = RematchRootState<typeof models> & PubnubState
+```
+
+## Manually setting the Pubnub client instance
+
+store.ts
+
+```javascript
+import createRematchPubnub from '@vincit/rematch-pubnub'
+
+const pubnubPlugin = createRematchPubnub()
+
+init({
+  plugins: [pubnubPlugin],
+})
+```
+
+app.tsx
+
+```javascript
+import { setPubnubInstance } from '@vincit/rematch-pubnub'
+import { PubNubProvider } from 'pubnub-react'
+
+const App = () => {
+  const pubnub = new Pubnub({
+    publishKey: 'publishKey',
+    subscribeKey: 'subscribeKey',
+    uuid: 'uuid',
+  })
+
+  setPubnubInstance(pubnub)
+
+  return (
+    <PubNubProvider client={pubnub}>
+      <App />
+    </PubNubProvider>
+  )
+}
 ```
 
 ## Usage

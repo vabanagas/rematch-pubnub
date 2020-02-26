@@ -5,12 +5,12 @@ import { Provider } from 'react-redux'
 import { PubNubProvider } from 'pubnub-react'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { getPubnub } from '@vincit/rematch-pubnub'
+import { getPubnubInstance } from '@vincit/rematch-pubnub'
 import store from './store'
 
 ReactDOM.render(
   <Provider store={store}>
-    <PubNubProvider client={getPubnub()}>
+    <PubNubProvider client={getPubnubInstance()}>
       <App />
     </PubNubProvider>
   </Provider>,
