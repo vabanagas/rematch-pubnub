@@ -1,6 +1,6 @@
 {
   "name": "@vincit/rematch-pubnub",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Pubnub-Redux plugin for Rematch.",
   "keywords": [
     "@rematch",
@@ -29,7 +29,6 @@
   "dependencies": {
     "@types/pubnub": "4.27.2",
     "pubnub": "4.27.3",
-    "pubnub-react": "^2.0.0",
     "pubnub-redux": "0.0.5-beta",
     "redux-thunk": "^2.3.0"
   },
