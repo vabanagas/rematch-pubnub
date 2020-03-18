@@ -1,6 +1,6 @@
 {
   "name": "@vincit/rematch-pubnub",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Pubnub-Redux plugin for Rematch.",
   "keywords": [
     "@rematch",
@@ -31,9 +31,6 @@
     "prepare": "npm run build",
     "build": "tsc && rollup -c"
   },
-  "dependencies": {
-    "redux-thunk": "^2.3.0"
-  },
   "devDependencies": {
     "@types/pubnub": "4.27.2",
     "@rematch/core": "^1.3.0",
@@ -42,6 +39,7 @@
     "prettier": "^1.19.1",
     "pubnub": "4.27.3",
     "pubnub-redux": "0.0.5-beta",
+    "redux-thunk": "^2.3.0",
     "rollup": "^1.32.1",
     "typescript": "^3.7.5"
   },
@@ -49,6 +47,7 @@
     "@types/pubnub": ">=4.27.0",
     "@rematch/core": ">=1.3.0",
     "pubnub": ">=4.27.0",
-    "pubnub-redux": ">=0.0.5-beta"
+    "pubnub-redux": ">=0.0.5-beta",
+    "redux-thunk": ">=2.3.0"
   }
 }
