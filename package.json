@@ -37,7 +37,7 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-replace": "^2.3.1",
     "prettier": "^1.19.1",
-    "pubnub": "4.27.3",
+    "pubnub": "4.37.0",
     "pubnub-redux": "0.0.5-beta",
     "redux-thunk": "^2.3.0",
     "rollup": "^1.32.1",
